@@ -1,50 +1,38 @@
 package com.supoved.questboard.android.activities;
 
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.google.inject.Inject;
 import com.supoved.questboard.R;
-import com.supoved.questboard.android.adapters.QuestArrayAdapter;
-import com.supoved.questboard.data.QuestStorage;
-import com.supoved.questboard.data.models.Quest;
 
-import roboguice.activity.RoboActivity;
-import roboguice.activity.RoboListActivity;
-import roboguice.inject.*;
+public class BoardActivity extends AppCompatActivity {
 
-public class BoardActivity extends RoboListActivity {
+    protected String[] navMenuTitles;
 
-    @Inject QuestStorage questStorage;
+    protected DrawerLayout mDrawerLayout;
+    protected ListView mDrawerList;
+    protected ActionBarDrawerToggle mDrawerToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setListAdapter(new QuestArrayAdapter(this, questStorage.getActiveQuests()));
+        setContentView(R.layout.activity_board);
+
+        final ActionBar ab = getSupportActionBar();
+        //ab.setHomeAsUpIndicator(R.drawable.ic_menu);
+        ab.setDisplayHomeAsUpEnabled(true);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_board, menu);
         return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 }
