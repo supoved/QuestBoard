@@ -8,4 +8,8 @@
     <!-- navigation drawer item labels  -->
     <string name="nav_quests">Quest Board</string>
     <string name="nav_rewards">Rewards</string>
+
+    <!-- Quests fragments  -->
+    <string name="title_active_quests">Active</string>
+    <string name="title_available_quests">Available</string>
 </resources>
