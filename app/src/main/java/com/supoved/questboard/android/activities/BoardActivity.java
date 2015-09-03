@@ -7,16 +7,12 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ListView;
 
 import com.supoved.questboard.R;
 
 public class BoardActivity extends AppCompatActivity {
 
-    protected String[] navMenuTitles;
-
     protected DrawerLayout mDrawerLayout;
-    protected ListView mDrawerList;
     protected ActionBarDrawerToggle mDrawerToggle;
 
     @Override
@@ -29,9 +25,10 @@ public class BoardActivity extends AppCompatActivity {
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_open, R.string.drawer_close);
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
-        //mDrawerToggle.setDrawerIndicatorEnabled(true);
-        //getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        final ActionBar actionBar = getSupportActionBar();
+        if(actionBar != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     @Override
@@ -45,7 +42,6 @@ public class BoardActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
